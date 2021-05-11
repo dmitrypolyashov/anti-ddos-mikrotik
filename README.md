@@ -1,4 +1,3 @@
-# anti-ddos-mikrotik
 <h1>Защита от DDOS-атак и SYN Flood protect MIKROTIK</h1>
 
 Конфигурация в работе на HAP AC:
