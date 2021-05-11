@@ -2,6 +2,7 @@
 <h1>Защита от DDOS-атак и SYN Flood protect MIKROTIK</h1>
 
 Конфигурация в работе на HAP AC:
+<pre>
 /ip firewall filter
 add chain=forward connection-state=new action=jump jump-target=block-ddos
 add chain=forward connection-state=new src-address-list=ddoser dst-address-list=ddosed action=drop
@@ -17,3 +18,4 @@ add action=jump chain=input comment="SYN Flood protect" connection-state=new \
 jump-target=SYN-Protect protocol=tcp tcp-flags=syn
 add action=return chain=SYN-Protect limit=200,5:packet
 add action=drop chain=SYN-Protect
+</pre>
