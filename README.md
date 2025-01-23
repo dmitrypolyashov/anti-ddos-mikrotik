@@ -17,7 +17,7 @@ add action=return chain=SYN-Protect limit=200,5:packet
 add action=drop chain=SYN-Protect
 </pre>
 
-<h1>Защита от взлома Микротика (Fail2Ban Mikrotik) / На страже доступа к Микротикам (Fail2Ban Mikrotik</h1>
+<h1>Защита от взлома доступа к Микротику</h1>
 <h3>Winbox доступ:</h3>
 <pre>
 /ip firewall mangle
