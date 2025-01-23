@@ -1,5 +1,5 @@
 <h1>Защита от DDOS-атак / SYN Flood protect MIKROTIK</h1>
-
+<pre>
 /ip firewall filter
 add chain=forward connection-state=new action=jump jump-target=block-ddos
 add chain=forward connection-state=new src-address-list=ddoser dst-address-list=ddosed action=drop
@@ -18,8 +18,8 @@ add action=drop chain=SYN-Protect
 </pre>
 
 <h1>Защита от взлома Микротика (Fail2Ban Mikrotik) / На страже доступа к Микротикам (Fail2Ban Mikrotik</h1>
-
-winbox:
+<h3>Winbox доступ:</h3>
+<pre>
 /ip firewall mangle
 add action=jump chain=output content="invalid user name or password" jump-target=FB-WB protocol=tcp src-port=8291
 /ip firewall mangle
@@ -30,8 +30,10 @@ add action=add-dst-to-address-list address-list=FB-WB-2 address-list-timeout=1m 
 add action=add-dst-to-address-list address-list=FB-WB-1 address-list-timeout=1m chain=FB-WB
 /ip firewall raw
 add action=drop chain=prerouting src-address-list=FB-WB-BAN
+</pre>
 
-Защита WebFig от BruteForce
+<h3>Защита WebFig от BruteForce</h3>
+<pre>
 /ip firewall mangle
 add action=jump chain=output content="403 Forbidden" jump-target=FB-WEB protocol=tcp src-port=80
 /ip firewall mangle
@@ -41,8 +43,9 @@ add action=add-dst-to-address-list address-list=FB-WEB-2 address-list-timeout=1m
 add action=add-dst-to-address-list address-list=FB-WEB-1 address-list-timeout=1m chain=FB-WEB
 /ip firewall raw
 add action=drop chain=prerouting src-address-list=FB-WEB-BAN
-
-Защита WebFig SSL от BruteForce
+</pre>
+<h3>Защита WebFig SSL от BruteForce</h3>
+<pre>
 /ip firewall mangle
 add action=jump chain=output jump-target=FB-SSL packet-size=317 protocol=tcp src-port=443
 /ip firewall mangle
@@ -52,3 +55,4 @@ add action=add-dst-to-address-list address-list=FB-SSL-2 address-list-timeout=1m
 add action=add-dst-to-address-list address-list=FB-SSL-1 address-list-timeout=1m chain=FB-SSL
 /ip firewall raw
 add action=drop chain=prerouting src-address-list=FB-SSL-BAN
+</pre>
